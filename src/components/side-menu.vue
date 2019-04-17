@@ -1,7 +1,8 @@
 <template>
   <div class="side-menu-wrapper">
     <slot></slot>
-    <Menu ref="menu" v-show="!collapsed" :active-name="activeName" :open-names="openedNames" :accordion="accordion" :theme="theme" width="auto">
+    <Menu ref="menu" v-show="!collapsed" :active-name="activeName" :open-names="openedNames"
+          :accordion="accordion" :theme="theme" width="220px" style="height: calc(100% - 84px)">
       <template v-for="item in menuList">
         <template v-if="item.children && item.children.length > 0">
           <Submenu :name="item.name" v-if="showChildren(item)" :key="`menu-${item.name}`">
@@ -9,9 +10,20 @@
               <Icon type="ios-paper" />
               {{item.title}}
             </template>
-            <menu-item :name="child.name" v-for="child in item.children" :key="child.name">
-              <Icon type="md-heart" />{{child.title}}
-            </menu-item>
+            <div v-for="child in item.children" :key="child.name">
+              <Submenu :name="child.name" v-if="showChildren2(child)" :key="`menu-${child.name}`">
+                <template slot="title">
+                  <Icon type="ios-paper" />
+                  {{child.title}}
+                </template>
+                <menu-item :name="cc.name" v-for="cc in child.children" :key="cc.name" :to="cc.name">
+                  <Icon type="md-heart" />{{cc.title}}
+                </menu-item>
+              </Submenu>
+              <menu-item v-if="!showChildren2(child)" :name="child.name" :to="child.name">
+                <Icon type="md-heart" />{{child.title}}
+              </menu-item>
+            </div>
           </Submenu>
         </template>
         <template v-else>
@@ -68,6 +80,9 @@
       showChildren (item) {
         return item.children && (item.children.length > 1 || (item.meta && item.meta.showAlways))
       },
+      showChildren2 (item) {
+        return (item.children && item.children.length > 1)
+      },
       getNameOrHref (item, children0) {
         return item.href ? `isTurnByHref_${item.href}` : (children0 ? item.children[0].name : item.name)
       }
@@ -82,6 +97,11 @@
     }
   }
 </script>
-<style scoped>
-
+<style scoped lang="less">
+  @import '../theme/var.less';
+.side-menu-wrapper{
+  position: absolute;
+  height: 100%;
+  background: @background-color;
+}
 </style>

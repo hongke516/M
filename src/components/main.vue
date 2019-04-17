@@ -1,39 +1,36 @@
 <template>
-  <div class="layout">
-    <Layout class="layout">
-      <Layout class="layout">
-        <Sider>
-          <side-menu theme="light" :menuList="menuList" :active-name="$route.name">
-            <div class="logo-con">
-              <img :src="maxLogo" key="max-logo" />
+  <div class="m-layout">
+    <div class="m-content">
+      <side-menu theme="light" :menuList="menuList" :active-name="$route.name">
+        <div class="logo-con">
+          <img :src="maxLogo" key="max-logo" />
+        </div>
+      </side-menu>
+      <div class="m-right-wrap">
+        <m-header>Header</m-header>
+        <div :style="{margin: '16px'}" class="content-wrapper">
+          <div>
+            <Breadcrumb>
+              <BreadcrumbItem v-for="item in breadCrumbList" :key="item.name">{{item.meta.title}}</BreadcrumbItem>
+            </Breadcrumb>
+            <div style="margin-top: 8px;">
+              <keep-alive :include="cacheList">
+                <router-view/>
+              </keep-alive>
+              <ABackTop :height="100" :bottom="80" :right="50" container=".content-wrapper"></ABackTop>
             </div>
-          </side-menu>
-        </Sider>
-        <Layout class="layout">
-          <Header>Header</Header>
-          <Content :style="{margin: '16px'}" class="content-wrapper">
-            <Layout>
-              <Breadcrumb>
-                <BreadcrumbItem v-for="item in breadCrumbList" :key="item.name">{{item.meta.title}}</BreadcrumbItem>
-              </Breadcrumb>
-              <Content>
-                <keep-alive :include="cacheList">
-                  <router-view/>
-                </keep-alive>
-                <ABackTop :height="100" :bottom="80" :right="50" container=".content-wrapper"></ABackTop>
-              </Content>
-            </Layout>
-          </Content>
-        </Layout>
-      </Layout>
-      <Footer>Footer</Footer>
-    </Layout>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="m-footer">Footer</div>
   </div>
 </template>
 
 <script>
   import maxLogo from '@/assets/images/baimilogo.png'
   import sideMenu from './side-menu.vue'
+  import mHeader from './header.vue'
   import ABackTop from './a-back-top/index.vue'
   import { mapMutations } from 'vuex'
   import routers from '@/router/router'
@@ -41,11 +38,11 @@ export default {
   name: 'main',
   components: {
     sideMenu,
+    mHeader,
     ABackTop
   },
   watch: {
     '$route' (newRoute) {
-      console.log(2, newRoute)
       this.setBreadCrumb(newRoute)
     }
   },
@@ -53,7 +50,6 @@ export default {
   },
   computed: {
     breadCrumbList () {
-      console.log(this.$store.state.app.breadCrumbList)
       return this.$store.state.app.breadCrumbList
     }
   },
@@ -63,9 +59,16 @@ export default {
       cacheList: [],
       menuList: [{
         iframeMenu: ['网站运营'],
-        title: '快递管理',
+        title: '揽件管理',
         name: '0',
-        children: [{title: '快递查询', name: 'home'}, {title: '快递接件', name: '2'}, {title: '快递员工派件', name: '3'}]
+        children: [
+          {title: '平台揽件', name: '1', children: [{title: '新建揽件', name: 'newTook'},
+              {title: '快捷揽件补录', name: 'tookEnter'},
+              {title: '揽件未支付', name: 'tookUnpay'},
+              {title: '揽件查询', name: 'tookQuery'}]},
+          {title: '快递接件', name: '2'},
+          {title: '快递员工派件', name: '3'}
+          ]
       }]
     }
   },
@@ -88,12 +91,24 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  .layout{
+<style scoped lang="less">
+  @import '../theme/var.less';
+  .m-layout{
     height: 100%;
+    background: @background-color;
   }
-  .ivu-layout-footer{
-    padding: 0;
+  .m-content{
+    height: calc(100% - 20px);
+  }
+  .m-right-wrap{
+    margin-left: 220px;
+  }
+  .m-footer{
+    position: absolute;
+    bottom: 0;
+    height: 20px;
+    width: 100%;
+    background-color: #42b983;
   }
   .logo-con{
     height: 64px;

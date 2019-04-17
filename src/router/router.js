@@ -2,23 +2,47 @@ export default [
   {
     path: '/',
     name: '_home',
-    redirect: '/home',
+    redirect: '/platformTook/newTook',
     meta: {
-      title: '首页',
+      title: '揽件管理',
       icon: ''
     },
     component: () => import('@/components/main.vue'),
     children: [
       {
-        path: '/home',
-        name: 'home',
+        path: '/platformTook',
+        name: 'platformTook',
         meta: {
-          hideInMenu: true,
-          title: '首页',
+          hideInMenu: false,
+          title: '平台揽件',
           notCache: true,
           icon: ''
         },
-        component: () => import('@/views/express-manger/express-query.vue')
+        component: () => import('../views/took-manger/index.vue'),
+        children: [
+          {
+            path: '/platformTook/newTook',
+            name: 'newTook',
+            meta: {
+              hideInMenu: false,
+              title: '新建揽件',
+              notCache: true,
+              icon: ''
+            },
+            component: () => import('../views/took-manger/new-took.vue')
+          },
+          {
+            path: '/platformTook/tookEnter',
+            name: 'tookEnter',
+            meta: {
+              hideInMenu: false,
+              title: '快捷揽件补录',
+              notCache: true,
+              icon: ''
+            },
+            component: () => import('../views/took-manger/took-enter.vue')
+          }
+        ]
       }
     ]
   },

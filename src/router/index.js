@@ -10,7 +10,6 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-    console.log(1, to, from, next)
     canTurnTo(to.name, 'all', routes)
     next() // 跳转
 })

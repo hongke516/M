@@ -53,17 +53,11 @@ export const getHomeRoute = (routers, homeName = 'home') => {
  * @returns {Array}
  */
 export const getBreadCrumbList = (route, homeRoute) => {
-  let homeItem = {...homeRoute, icon: homeRoute.meta.icon}
   let routeMetched = route.matched
-  if (routeMetched.some(item => item.name === homeRoute.name)) return [homeItem]
   let res = routeMetched.filter(item => {
     return item.meta === undefined || !item.meta.hideInBread
   }).map(item => {
     let meta = {...item.meta}
-    if (meta.title && typeof meta.title === 'function') {
-      meta.__titleIsFunction__ = true
-      meta.title = meta.title(route)
-    }
     let obj = {
       icon: (item.meta && item.meta.icon) || '',
       name: item.name,
@@ -74,7 +68,7 @@ export const getBreadCrumbList = (route, homeRoute) => {
   res = res.filter(item => {
     return !item.meta.hideInMenu
   })
-  return [{...homeItem, to: homeRoute.path}, ...res]
+  return [...res]
 }
 // scrollTop animation
 export const scrollTop = (el, from = 0, to, duration = 500, endCallback) => {

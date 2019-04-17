@@ -1,8 +1,8 @@
 import {
   getBreadCrumbList,
   getHomeRoute
-} from '@/libs/util'
-import config from '@/config'
+} from '../../libs/util'
+import config from '../../config'
 const { homeName } = config
 
 export default {
