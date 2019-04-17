@@ -2,6 +2,28 @@ export default [
   {
     path: '/',
     name: '_home',
+    redirect: '/home',
+    meta: {
+      title: '首页',
+      icon: ''
+    },
+    component: () => import('@/components/main.vue'),
+    children: [
+      {
+        path: '/home',
+        name: 'home',
+        meta: {
+          hideInMenu: false,
+          title: '运行概况',
+          notCache: true,
+          icon: ''
+        },
+        component: () => import('../views/Home.vue')
+      }]
+  },
+  {
+    path: '/',
+    name: '_home',
     redirect: '/platformTook/newTook',
     meta: {
       title: '揽件管理',

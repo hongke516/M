@@ -16,18 +16,18 @@
                   <Icon type="ios-paper" />
                   {{child.title}}
                 </template>
-                <menu-item :name="cc.name" v-for="cc in child.children" :key="cc.name" :to="cc.name">
+                <menu-item :name="cc.name" v-for="cc in child.children" :key="cc.name" :to="{name: cc.name}">
                   <Icon type="md-heart" />{{cc.title}}
                 </menu-item>
               </Submenu>
-              <menu-item v-if="!showChildren2(child)" :name="child.name" :to="child.name">
+              <menu-item v-if="!showChildren2(child)" :name="child.name" :to="{name: child.name}">
                 <Icon type="md-heart" />{{child.title}}
               </menu-item>
             </div>
           </Submenu>
         </template>
         <template v-else>
-          <menu-item :name="getNameOrHref(item)" :key="`menu-${item.name}`"><common-icon :type="item.icon || ''"/><span>{{ showTitle(item) }}</span></menu-item>
+          <menu-item :name="getNameOrHref(item)" :key="`menu-${item.name}`"><Icon type="md-heart" /><span>{{ showTitle(item) }}</span></menu-item>
         </template>
       </template>
     </Menu>
