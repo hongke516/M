@@ -2,7 +2,7 @@
   <div class="side-menu-wrapper">
     <slot></slot>
     <Menu ref="menu" v-show="!collapsed" :active-name="activeName" :open-names="openedNames"
-          :accordion="accordion" :theme="theme" width="220px" style="height: calc(100% - 84px)">
+          :accordion="accordion" :theme="theme" width="220px" style="height: calc(100% - 84px);overflow: auto">
       <template v-for="item in menuList">
         <template v-if="item.children && item.children.length > 0">
           <Submenu :name="item.name" v-if="showChildren(item)" :key="`menu-${item.name}`">
@@ -99,9 +99,9 @@
 </script>
 <style scoped lang="less">
   @import '../theme/var.less';
-.side-menu-wrapper{
-  position: absolute;
-  height: 100%;
-  background: @background-color;
-}
+  .side-menu-wrapper{
+    position: absolute;
+    height: 100%;
+    background: @background-color;
+  }
 </style>

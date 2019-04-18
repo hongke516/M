@@ -1,7 +1,7 @@
 <template>
   <div class="m-layout">
     <div class="m-content">
-      <side-menu theme="light" :menuList="menuList" :active-name="$route.name">
+      <side-menu theme="light" :menuList="menuList" :accordion="true" :active-name="$route.name">
         <div class="logo-con">
           <img :src="maxLogo" key="max-logo" />
         </div>
