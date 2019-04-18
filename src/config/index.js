@@ -31,11 +31,11 @@ export default {
     title: '加盟合伙制',
     name: 'partner',
     children: [
-      {title: '加盟网点收费配置', name: 'config'},
-      {title: '配置修改记录', name: 'configRecord'},
-      {title: '营业概览', name: 'dailyReport'},
-      {title: '账单明细', name: 'bill'},
-      {title: '财务报表', name: 'report'},
+      {title: '加盟网点收费配置', name: 'partnerConfig'},
+      {title: '配置修改记录', name: 'partnerConfigRecord'},
+      {title: '营业概览', name: 'partnerDailyReport'},
+      {title: '账单明细', name: 'partnerBill'},
+      {title: '财务报表', name: 'partnerReport'},
     ]
   }]
 

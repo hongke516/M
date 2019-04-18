@@ -24,6 +24,49 @@ export default [
   {
     path: '/',
     name: '_home',
+    redirect: '/partner/config',
+    meta: {
+      title: '加盟合伙制',
+      icon: ''
+    },
+    component: () => import('@/components/main.vue'),
+    children: [
+      {
+        path: '/partner/config',
+        name: 'partnerConfig',
+        meta: {
+          hideInMenu: false,
+          title: '加盟网点收费配置',
+          notCache: true,
+          icon: ''
+        },
+        component: () => import('../views/partner/config.vue')
+      },
+      { path: '/partner/configRecord',
+        name: 'partnerConfigRecord',
+        meta: {
+          hideInMenu: false,
+          title: '配置修改记录',
+          notCache: true,
+          icon: ''
+        },
+        component: () => import('../views/partner/configRecord.vue')
+      },
+      { path: '/partner/dailyReport',
+        name: 'partnerDailyReport',
+        meta: {
+          hideInMenu: false,
+          title: '营业概览',
+          notCache: true,
+          icon: ''
+        },
+        component: () => import('../views/partner/dailyReport.vue')
+      }
+      ]
+  },
+  {
+    path: '/',
+    name: '_home',
     redirect: '/platformTook/newTook',
     meta: {
       title: '揽件管理',

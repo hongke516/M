@@ -8,19 +8,15 @@
         <param name="_StockProps" value="0">
       </object>
     </p>
-    <img alt="Vue logo" src="../../assets/logo.png">
-    <HelloWorld msg="Welcome to 新建快件"/>
   </Card>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+/* eslint-disable */
 export default {
   name: 'home',
   components: {
-    HelloWorld
   },
   mounted() {
   },
