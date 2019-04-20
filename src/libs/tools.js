@@ -168,7 +168,13 @@ export const on = (function () {
     }
   }
 })()
-
+export const getTitle = (params) => {
+  var str="";
+  for (var i in params){
+    str+=i+"="+params[i]+',';
+  }
+  return str.slice(0,str.length-1);
+}
 /**
  * @description 解绑事件 off(element, event, handler)
  */
@@ -212,4 +218,51 @@ export const objEqual = (obj1, obj2) => {
   else if (keysArr1.length === 0 && keysArr2.length === 0) return true
   /* eslint-disable-next-line */
   else return !keysArr1.some(key => obj1[key] != obj2[key])
+}
+String.prototype.getByteLen = function() {
+  let len = 0;
+  for (var i=0; i<this.length; i++)
+  {
+    if ((this.charCodeAt(i) & 0xff00) != 0)
+      len ++;
+    len ++;
+  }
+  return len;
+};
+Date.prototype.Format = function (fmt) { //author: meizz
+  var o = {
+    "M+": this.getMonth() + 1, //月份
+    "D+": this.getDate(), //日
+    "d+": this.getDate(), //日
+    "h+": this.getHours(), //小时
+    "m+": this.getMinutes(), //分
+    "s+": this.getSeconds(), //秒
+    "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+    "S": this.getMilliseconds() //毫秒
+  };
+  if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+  for (var k in o)
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+  return fmt;
+}
+export const formatDate = (date,fmt) => {
+  var o = {
+    "M+":date.getMonth() + 1,//月份
+    "D+":date.getDate(),//日
+    "d+":date.getDate(),//日
+    "h+":date.getHours(),//hours
+    "m+":date.getMinutes(),//分钟
+    's+':date.getSeconds(),//秒,
+  }
+
+  if(/(y+)/.test(fmt)){
+    //RegExp.$1 是RegExp的一个属性,指的是与正则表达式匹配的第一个 子匹配(以括号为标志)字符串，以此类推，RegExp.$2，RegExp.$3，..RegExp.$99总共可以有99个匹配
+    fmt = fmt.replace(RegExp.$1,(date.getFullYear()+'').substr(4 - RegExp.$1.length));
+  }
+  for(var k in o){
+    if(new RegExp("("+k+")").test(fmt)){
+      fmt = fmt.replace(RegExp.$1,(RegExp.$1.length===1)?(o[k]):(("00"+o[k]).substr((""+o[k]).length)))
+    }
+  }
+  return fmt;
 }

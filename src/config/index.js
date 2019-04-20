@@ -17,6 +17,16 @@ export default {
   homeName: '_home',
 
   menuList: [{
+    title: '加盟合伙制',
+    name: 'partner',
+    children: [
+      {title: '加盟网点收费配置', name: 'partnerConfig'},
+      {title: '配置修改记录', name: 'partnerConfigRecord'},
+      {title: '营业概览', name: 'partnerDailyReport'},
+      {title: '账单明细', name: 'partnerBill'},
+      {title: '财务报表', name: 'partnerReport'},
+    ]
+  }, {
     title: '揽件管理',
     name: '_home',
     children: [
@@ -26,16 +36,6 @@ export default {
           {title: '揽件查询', name: 'tookQuery'}]},
       {title: '快递接件', name: '2'},
       {title: '快递员工派件', name: '3'}
-    ]
-  }, {
-    title: '加盟合伙制',
-    name: 'partner',
-    children: [
-      {title: '加盟网点收费配置', name: 'partnerConfig'},
-      {title: '配置修改记录', name: 'partnerConfigRecord'},
-      {title: '营业概览', name: 'partnerDailyReport'},
-      {title: '账单明细', name: 'partnerBill'},
-      {title: '财务报表', name: 'partnerReport'},
     ]
   }]
 

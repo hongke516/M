@@ -61,6 +61,26 @@ export default [
           icon: ''
         },
         component: () => import('../views/partner/dailyReport.vue')
+      },
+      { path: '/partner/bill',
+        name: 'partnerBill',
+        meta: {
+          hideInMenu: false,
+          title: '账单明细',
+          notCache: true,
+          icon: ''
+        },
+        component: () => import('../views/partner/bill.vue')
+      },
+      { path: '/partner/report',
+        name: 'partnerReport',
+        meta: {
+          hideInMenu: false,
+          title: '财务报表',
+          notCache: true,
+          icon: ''
+        },
+        component: () => import('../views/partner/report.vue')
       }
       ]
   },

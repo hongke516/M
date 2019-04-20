@@ -1,4 +1,6 @@
-import { hasOneOf } from '@/libs/tools'
+/* eslint-disable */
+import { hasOneOf, getTitle } from '@/libs/tools'
+import QS from 'qs';
 /**
  * @param {*} access 用户权限数组，如 ['super_admin', 'admin']
  * @param {*} route 路由列表
@@ -8,6 +10,10 @@ const hasAccess = (access, route) => {
   else return true
 }
 
+export const downloadFile = (url, title, params) => {
+  params.columnName = getTitle(title);
+  window.open(url+"?"+ QS.stringify(params));
+}
 /**
  * 权鉴
  * @param {*} name 即将跳转的路由name

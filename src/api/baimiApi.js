@@ -13,6 +13,10 @@ import QS from 'qs';
  */
 const api={
     //getDemo data可以不传数据
+    login (data) {
+      return post('login/login.htm', QS.stringify(data));
+    },
+
     getDemo (data) {
         return get('apiDemo', data);
     },

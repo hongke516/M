@@ -5,8 +5,18 @@
 </template>
 
 <script>
+  import baimiApi from './api/baimiApi'
   export default {
-    name: 'App'
+    name: 'App',
+    created () {
+      baimiApi.login({username: 'shen', password: '123456'})
+        .then(response => {
+          window.console.log(response)
+        })
+        .catch((err)=>{
+          window.console.log(err)
+        })
+    }
   }
 </script>
 
